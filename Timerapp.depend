@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1535565492 source:c:\users\admin\code\timerapp\main.cpp
+	<Windows.h>
+	<fstream>
+	<tlhelp32.h>
+	<conio.h>
+
+1536665996 source:c:\users\alex\source\timerapp\main.cpp
+	<Windows.h>
+	<fstream>
+	<tlhelp32.h>
+	<conio.h>
+
+1536174863 source:c:\users\alex\source\timerapp\icon.rc
+
