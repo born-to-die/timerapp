@@ -36,18 +36,24 @@ int main()
     HANDLE hSnap;
     PROCESSENTRY32 proc;
     DWORD PID;
+
     ifstream fin;
     ofstream fout;
+
     string* arr_names;
     string* arr_names_temp;
     string temp;
     string sOldExeFile;
+
     unsigned int* arr_seconds;
     unsigned int* arr_seconds_temp;
     unsigned int int_seconds = 0;
+
     unsigned short count_execs = 0;
     unsigned short past_active_in_arr = 0;
+
     char szTitle[16] = {0};
+
     bool bFirstProcess = true;
     bool run = true;
 
@@ -152,7 +158,7 @@ int main()
 
                 for(int i = 0; i < count_execs; i++) {
 
-                    fin.open(arr_names[i] + ".txt");
+                    fin.open(".\\apps\\" + arr_names[i] + ".txt");
 
                     if(fin) {
                         fin >> hours >> minutes >> seconds;
@@ -164,7 +170,7 @@ int main()
 
                     fin.close();
 
-                    fout.open(arr_names[i] + ".txt");
+                    fout.open(".\\apps\\" + arr_names[i] + ".txt");
 
                     arr_seconds[i] += int_seconds;
 

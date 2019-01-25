@@ -34,11 +34,11 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="icon.rc">
-			<Option compilerVar="WINDRES" />
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
 		<Unit filename="main.cpp" />
+		<Unit filename="resource.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="timerapp.ico" />
 		<Extensions>
 			<code_completion />
 			<envvars />

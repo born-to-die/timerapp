@@ -22,7 +22,7 @@ the output unloads data to disk.
 
 This can have an unpleasant effect, if the program closes unexpectedly 
 (blackout, system errors), then all data will be lost. If this bothers you, 
-then download the project from the old commit.
+then download the project from the old branch.
 
 ---
 Версия 2.0
@@ -49,4 +49,4 @@ then download the project from the old commit.
 
 Это может иметь неприятный эффект, если программа неожиданно 
 закроется (отключение света, ошибки системы), то все данные будут потеряны. 
-Если это вас беспокоит, то скачайте проект из старого коммита.
+Если это вас беспокоит, то скачайте проект из старой ветки.
