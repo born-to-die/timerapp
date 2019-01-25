@@ -24,6 +24,10 @@ This can have an unpleasant effect, if the program closes unexpectedly
 (blackout, system errors), then all data will be lost. If this bothers you, 
 then download the project from the old branch.
 
+SYSTEM REQUIREMENTS
+
+Windows
+
 ---
 Версия 2.0
 (однако, в самой программе версии не ведутся)
@@ -49,4 +53,12 @@ then download the project from the old branch.
 
 Это может иметь неприятный эффект, если программа неожиданно 
 закроется (отключение света, ошибки системы), то все данные будут потеряны. 
+<<<<<<< HEAD
 Если это вас беспокоит, то скачайте проект из старой ветки.
+=======
+Если это вас беспокоит, то скачайте проект из старого коммита.
+
+СИСТ. ТРЕБ. 
+
+Windows
+>>>>>>> 2faa211cb0174f2366c700b1894d141a96becd30
