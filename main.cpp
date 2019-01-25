@@ -28,6 +28,7 @@
 #include <fstream>
 #include <tlhelp32.h>
 #include <conio.h>
+#include <ctime>
 using namespace std;
 
 int main()
@@ -36,6 +37,12 @@ int main()
     HANDLE hSnap;
     PROCESSENTRY32 proc;
     DWORD PID;
+
+    time_t rawtime;
+    struct tm * time_start;
+    struct tm * time_end;
+    time ( &rawtime );
+    time_start = localtime ( &rawtime );
 
     ifstream fin;
     ofstream fout;
@@ -156,7 +163,42 @@ int main()
                 unsigned short minutes;
                 unsigned short seconds;
 
+                time ( &rawtime );
+                time_end = localtime ( &rawtime );
+
+                fout.open(".\\stats\\history.txt", std::ios::app);
+
+                fout << time_start->tm_year + 1900 << "/"
+                    << time_start->tm_mon + 1 << "/"
+                    << time_start->tm_mday << " "
+                    << time_start->tm_hour << ":"
+                    << time_start->tm_min << ":"
+                    << time_start->tm_sec << " - ";
+
+                fout << time_end->tm_year + 1900 << "/"
+                    << time_end->tm_mon + 1 << "/"
+                    << time_end->tm_mday << " "
+                    << time_end->tm_hour << ":"
+                    << time_end->tm_min << ":"
+                    << time_end->tm_sec << "\n\n";
+
                 for(int i = 0; i < count_execs; i++) {
+
+                    hours = arr_seconds[i] / 3600;
+                    minutes = (arr_seconds[i] - hours * 3600) / 60;
+                    seconds = arr_seconds[i] - (hours * 3600 + minutes * 60);
+
+                    fout << "\t" << arr_names[i] << " - " << hours << ":" << minutes << ":" << seconds << "\n";
+
+                }
+
+                fout << "\n";
+
+                fout.close();
+
+                for(int i = 0; i < count_execs; i++) {
+
+                    // UPLOAD DATA
 
                     fin.open(".\\apps\\" + arr_names[i] + ".txt");
 
@@ -181,8 +223,10 @@ int main()
                     fout << hours << " " << minutes << " " << seconds;
 
                     fout.close();
-                }
 
+                    // UPLOAD STATS
+
+                }
 
                 run = false;
                 break;
