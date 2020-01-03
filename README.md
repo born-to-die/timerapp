@@ -1,4 +1,6 @@
 # timerapp
+![timerapp screen](https://raw.githubusercontent.com/born-to-die/timerapp/master/screen_1.png)
+
 Version 2.0
 (however, in the program version itself is not maintained)
 
