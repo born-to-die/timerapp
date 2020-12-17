@@ -360,7 +360,7 @@ int main()
 
                 printf("\nPAUSE\n");
                 getch();
-                printf("PLAY\n\n");
+                printf("\nPLAY\n");
 
                 break;
             }
