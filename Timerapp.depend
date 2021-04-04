@@ -26,3 +26,12 @@
 
 1548179616 source:c:\users\alex\source\timerapp\resource.rc
 
+1608186808 source:e:\git\timerapp\resource.rc
+
+1608709535 source:e:\git\timerapp\main.cpp
+	<Windows.h>
+	<fstream>
+	<tlhelp32.h>
+	<conio.h>
+	<ctime>
+
