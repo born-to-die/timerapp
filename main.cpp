@@ -6,7 +6,7 @@
 *
 *    Life is so around the pc that it would be time
 *    This is to turn into statistics.
-*    Change, I'm waiting for change.
+*    Change, I'm waiting for change. 
 *
 *	@version 2.2 (20.12.2020)
 *	@author Alexandr Baklankin (intbad)
