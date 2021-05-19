@@ -24,9 +24,10 @@ HANDLE hSnap;
 PROCESSENTRY32 proc;
 DWORD PID;
 
-time_t rawtime;
+time_t rawtime, rawtime2;
 struct tm * time_start;
 struct tm * time_current;
+struct tm * time_end;
 
 ifstream fin;
 ofstream fout;
@@ -42,6 +43,14 @@ unsigned int    int_seconds = 0;
 
 unsigned short  count_execs = 0;
 unsigned short  past_active_in_arr = 0;
+
+unsigned short start_y = 0;
+unsigned short start_n = 0;
+unsigned short start_d = 0;
+unsigned short start_h = 0;
+unsigned short start_m = 0;
+unsigned short start_s = 0;
+
 
 char szTitle[16] = {0};
 
@@ -59,12 +68,12 @@ void saveOnHDD() {
 
     fout.open(".\\stats\\history.txt", std::ios::app);
 
-    fout << time_start->tm_year + 1900 << "/"
-        << time_start->tm_mon + 1 << "/"
-        << time_start->tm_mday << " "
-        << time_start->tm_hour << ":"
-        << time_start->tm_min << ":"
-        << time_start->tm_sec << " - ";
+    fout << start_y + 1900 << "/"
+                    << start_n + 1 << "/"
+                    << start_d << " "
+                    << start_h << ":"
+                    << start_m << ":"
+                    << start_s << " - ";
 
     time(&rawtime2);
     time_end = localtime(&rawtime2);
@@ -98,6 +107,13 @@ int main()
     time(&rawtime);
     time_start = localtime(&rawtime);
 
+    start_y = time_start->tm_year;
+    start_n = time_start->tm_mon;
+    start_d = time_start->tm_mday;
+    start_h = time_start->tm_hour;
+    start_m = time_start->tm_min;
+    start_s = time_start->tm_sec;
+
     arr_names       = new string[count_execs];
     arr_names_temp  = new string[count_execs];
 
@@ -124,12 +140,12 @@ int main()
         printf("Folder 'stats' already have\n");
 
     printf("\nSession start: %d/%d/%d %d:%d:%d\n",
-                    time_start->tm_year + 1900,
-                    time_start->tm_mon + 1,
-                    time_start->tm_mday,
-                    time_start->tm_hour,
-                    time_start->tm_min,
-                    time_start->tm_sec);
+                    start_y + 1900,
+                    start_n + 1,
+                    start_d,
+                    start_h,
+                    start_m,
+                    start_s);
 
     while (run) {
 
@@ -224,38 +240,7 @@ int main()
                 unsigned short minutes;
                 unsigned short seconds;
 
-                fout.open(".\\stats\\history.txt", std::ios::app);
-
-                fout << time_start->tm_year + 1900 << "/"
-                    << time_start->tm_mon + 1 << "/"
-                    << time_start->tm_mday << " "
-                    << time_start->tm_hour << ":"
-                    << time_start->tm_min << ":"
-                    << time_start->tm_sec << " - ";
-
-                time(&rawtime);
-                time_start = localtime(&rawtime);
-
-                fout << time_start->tm_year + 1900 << "/"
-                    << time_start->tm_mon + 1 << "/"
-                    << time_start->tm_mday << " "
-                    << time_start->tm_hour << ":"
-                    << time_start->tm_min << ":"
-                    << time_start->tm_sec << "\n\n";
-
-                for (int i = 0; i < count_execs; i++) {
-
-                    hours = arr_seconds[i] / 3600;
-                    minutes = (arr_seconds[i] - hours * 3600) / 60;
-                    seconds = arr_seconds[i] - (hours * 3600 + minutes * 60);
-
-                    fout << "\t" << hours << ":" << minutes << ":" << seconds << "\t" << arr_names[i] << "\n";
-
-                }
-
-                fout << "\n";
-
-                fout.close();
+                saveOnHDD();
 
                 for (int i = 0; i < count_execs; i++) {
 
@@ -295,15 +280,13 @@ int main()
             case 13: {
 
                 printf("\n%d/%d/%d %d:%d:%d - ",
-                    time_start->tm_year + 1900,
-                    time_start->tm_mon + 1,
-                    time_start->tm_mday,
-                    time_start->tm_hour,
-                    time_start->tm_min,
-                    time_start->tm_sec);
+                    start_y + 1900,
+                    start_n + 1,
+                    start_d,
+                    start_h,
+                    start_m,
+                    start_s);
 
-                time_t rawtime2;
-                struct tm * time_end;
                 time(&rawtime2);
                 time_end = localtime(&rawtime2);
 
@@ -315,8 +298,6 @@ int main()
                     time_end->tm_hour,
                     time_end->tm_min,
                     time_end->tm_sec);
-
-                localtime(&rawtime);
 
                 unsigned short hours;
                 unsigned short minutes;
