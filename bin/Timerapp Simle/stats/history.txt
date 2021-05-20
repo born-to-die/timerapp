@@ -1,9 +1,0 @@
-2021/4/6 21:33:37 - 2021/4/6 21:33:38
-
-	0:0:6	Timerapp.exe
-	0:0:9	explorer.exe
-	0:0:7	qbittorrent.exe
-	0:0:34	Workrave.exe
-	0:1:51	notepad++.exe
-	0:23:42	firefox.exe
-
