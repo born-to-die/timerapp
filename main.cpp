@@ -1,15 +1,15 @@
 /**
 *	Timerapp Simple 2.2
-*	Code::Blocks 20.03, MinGW, Windows 10
+*	Code::Blocks 20.03, MinGW
 *
 *	The meter spent in the program.
 *
-*    Life is so around the pc that it would be time
-*    This is to turn into statistics.
-*    Change, I'm waiting for change.
+*   Life is so around the pc that it would be time
+*   This is to turn into statistics.
+*   Change, I'm waiting for change.
 *
-*	@version 2.2 (20.12.2020)
-*	@author Alexandr Baklankin (intbad)
+*	@version 2.2 (20.05.2021)
+*	@author Baklankin Alexandr (intbad)
 */
 
 #include <Windows.h>
@@ -57,6 +57,10 @@ char szTitle[16] = {0};
 bool b_first_process = true;
 bool run = true;
 
+/**
+ *  Save data on HDD
+ *  @return void
+ */
 void saveOnHDD() {
 
     time_t rawtime2;
