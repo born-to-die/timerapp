@@ -1,5 +1,5 @@
 import matplotlib as matplotlib
-import matplotlib.pyplot as pyplot
+import matplotlib.pyplot as plot
 import matplotlib.dates as mdates
 import datetime as dt
 import numpy as np
@@ -8,92 +8,129 @@ import os
 
 now = dt.datetime.now()
 
-arr_files = os.walk("apps")
+"""
+Dumb data calculation for statistics
+Goes through the files (several times) until there are 10 largest positions (in time) 
+"""
 
-processes_names = []
-processes_times = []
 
-def func(pct, allvals):
-    absolute = int(pct/100.*np.sum(allvals))
+def func(pct, values):
+    """
+    Formats caption for charts
+    :param pct: string
+    :param values: array
+    :return: string
+    """
+
+    absolute = int(pct / 100. * np.sum(values))
+
     return "{:.1f}%\n({:d} ч.)".format(pct, absolute)
 
-def getPie():
 
-    for address, dirs, files in arr_files:
-        
-        for file in files:
-                    
-            time = open("apps/" + file)       
-            
-            time_f = time.read().split()
-                   
-            minutes = int(time_f[0])
-            
-            if minutes > 10:
+def get_pie():
+    """
+    Formats chart-pie
+    """
+    indexer = 1
 
-                file = file.split('.')[0]
-                
-                processes_times.append(minutes)
-                processes_names.append(file)
+    while True:
 
-    dpi = 80
-    pic = pyplot.figure(dpi = dpi, figsize = (1000 / dpi, 1000 / dpi) )
+        arr_files = os.walk("apps")
+
+        processes_names = []
+        processes_times = []
+
+        for address, dirs, files in arr_files:
+
+            for file in files:
+
+                print(file)
+
+                time = open("apps/" + file)
+
+                time_f = time.read().split()
+
+                # print(time_f)
+
+                hours = int(time_f[0])
+
+                if hours >= indexer:
+                    file = file.split('.')[0]
+
+                    processes_times.append(hours)
+                    processes_names.append(file)
+
+        if len(processes_times) <= 10:
+            break
+        else:
+            indexer += 1
 
     matplotlib.rcParams.update({'font.size': 9})
-    pyplot.title('Проведенные часы в программах/играх')
-    xs = range(len(processes_names))
+    plot.title('Hours spent in programs / games')
 
-    pyplot.pie(
+    plot.pie(
         processes_times,
         autopct=lambda pct: func(pct, processes_times),
-        radius = 1.1,
+        radius=1.1,
         labels=processes_names
     )
 
-    pyplot.savefig(now.strftime("%Y-%m-%d") + ' stats (p).png')
+    plot.savefig(now.strftime("%Y-%m-%d") + ' stats (pie).png')
 
-def getBars():
 
-    for address, dirs, files in arr_files:
-        
-        for file in files:
-                    
-            time = open("apps/" + file)       
-            
-            time_f = time.read().split()
-                   
-            minutes = int(time_f[0])
-            
-            if minutes > 10:
+def get_bars():
+    """
+    Formats chart-bars
+    """
+    indexer = 1
 
-                file = file.split('.')[0]
-                
-                processes_times.append(minutes)
-                processes_names.append(file)
+    while True:
+
+        arr_files = os.walk("apps")
+
+        processes_names = []
+        processes_times = []
+
+        for address, dirs, files in arr_files:
+
+            for file in files:
+
+                print(file)
+
+                time = open("apps/" + file)
+
+                time_f = time.read().split()
+
+                # print(time_f)
+
+                hours = int(time_f[0])
+
+                if hours >= indexer:
+                    file = file.split('.')[0]
+
+                    processes_times.append(hours)
+                    processes_names.append(file)
+
+        if len(processes_times) <= 10:
+            break
+        else:
+            indexer += 1
 
     dpi = 80
-    pic = pyplot.figure(dpi = dpi, figsize = (1000 / dpi, 1000 / dpi) )
+    pic = plot.figure(dpi=dpi, figsize=(1000 / dpi, 1000 / dpi))
+
     matplotlib.rcParams.update({'font.size': 9})
+    plot.title('Hours spent in programs / games')
 
-    pyplot.title('Проведенные часы в программах/играх')
+    plot.bar(processes_names, processes_times)
 
-    ax = pyplot.axes()
-    ax.yaxis.grid(True, zorder = 1)
+    pic.savefig(now.strftime("%Y-%m-%d") + ' stats (bar).png')
 
-    xs = range(len(processes_names))
 
-    pyplot.bar([x + 0.05 for x in xs], [ d * 0.9 for d in processes_times],
-        width = 0.2, color = 'red', alpha = 0.7, label = 'Часы',
-        zorder = 2)
+print("\nBuild pie...\n")
 
-    pyplot.xticks(xs, processes_names)
+get_pie()
 
-    pic.autofmt_xdate(rotation = 25)
+print("\nBuild bar...\n")
 
-    pyplot.legend(loc = 'upper right')
-
-    pic.savefig(now.strftime("%Y-%m-%d") + ' stats (b).png')
-    
-
-getPie()
-getBars()
+get_bars()
