@@ -18,6 +18,10 @@
 #include <conio.h>
 #include <ctime>
 
+#define APPNAME "Timerapp Simple"
+#define VERSION "2.2"
+#define SUBVERSION "210523"
+
 using namespace std;
 
 HANDLE hSnap;
@@ -52,6 +56,7 @@ unsigned short start_m = 0;
 unsigned short start_s = 0;
 
 
+char c_app_title[] = "title";
 char szTitle[16] = {0};
 
 bool b_first_process = true;
@@ -124,13 +129,20 @@ int main()
     arr_seconds      = new unsigned int[count_execs];
     arr_seconds_temp = new unsigned int[count_execs];
 
-    system("title Timerapp Simple 2.2");
+    strcat(c_app_title, " ");
+    strcat(c_app_title, APPNAME);
+    strcat(c_app_title, " ");
+    strcat(c_app_title, VERSION);
+    strcat(c_app_title, ".");
+    strcat(c_app_title, SUBVERSION);
 
-    printf("TIMERAPP Simple 2.2 \t (https://github.com/born-to-die)\n\
+    system(c_app_title);
+
+    printf("%s %s.%s \t (https://github.com/born-to-die)\n\
            \nSPACE = PAUSE\
            \nENTER = SESSION INFO\
            \nBACKSPACE = HARD SAVE\
-           \nESCAPE = EXIT\n\n");
+           \nESCAPE = EXIT\n\n", APPNAME, VERSION, SUBVERSION);
 
     if (CreateDirectory(".\\apps", NULL))
         printf("Created folder 'apps'\n");
