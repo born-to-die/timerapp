@@ -1,4 +1,4 @@
-# timerapp v.2.2
+# Timerapp Simple v.2.2
 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/born-to-die/timerapp) ![GitHub last commit](https://img.shields.io/github/last-commit/born-to-die/timerapp)
 
