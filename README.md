@@ -2,7 +2,11 @@
 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/born-to-die/timerapp) ![GitHub last commit](https://img.shields.io/github/last-commit/born-to-die/timerapp)
 
-![timerapp screen](https://raw.githubusercontent.com/born-to-die/timerapp/master/screen_1.png)
+![timerapp screen](https://raw.githubusercontent.com/born-to-die/timerapp/master/screens/screen_1.png)
+
+![timerapp screen](https://raw.githubusercontent.com/born-to-die/timerapp/master/screens/bar.png)
+
+![timerapp screen](https://raw.githubusercontent.com/born-to-die/timerapp/master/screens/pie.png)
 
 ###### English description
 
